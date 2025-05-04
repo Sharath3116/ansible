@@ -1,0 +1,12 @@
+- name: service stop and Un-install pacakge
+  hosts: web
+  tasks:  
+    - name: service stop
+      ansible.builtin.service:
+        name: nginx
+        state: stopped
+
+    - name: pacakge remove
+      ansible.builtin.pacakge:
+        name: nginx
+        state: absent
