@@ -3,10 +3,10 @@
   tasks:  
     - name: service stop
       ansible.builtin.service:
-        name: nginx
-        state: stopped
+          name: nginx
+          state: stopped
 
     - name: pacakge remove
-      ansible.builtin.pacakge:
-        name: nginx
-        state: absent
+      ansible.builtin.package:
+          name: nginx
+          state: absent
