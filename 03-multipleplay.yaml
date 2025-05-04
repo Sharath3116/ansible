@@ -1,7 +1,7 @@
 #playbook is list of play
 
 - name: PLAY 1
-  hosts: locahost
+  hosts: localhost
   tasks:
   - name: PLAY 1 AND TASK 1
     ansible.builtin.debug:
@@ -10,7 +10,7 @@
 - name: PLAY 2
   hosts: localhost
   tasks:
-    -name:  PLAY 2 AND TASK 2"
-    ansible.builtin.debug:
+    - name:  PLAY 2 AND TASK 2
+      ansible.builtin.debug:
         msg: "Hello from Play 2 and Task 2"
 
