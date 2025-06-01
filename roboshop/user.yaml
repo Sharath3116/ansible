@@ -56,11 +56,11 @@
     
     - name: get the user configuratation
       ansible.builtin.command: mongosh --host mongodb.olavu.in --quiet --eval 'db = db.getSiblingDB("users"); db.users.count()'
-      register: product_count
+      register: user_count
 
     - name: print the count
       ansible.builtin.debug:
-        msg: "product count {{ product_count }}"
+        msg: "user count {{ user_count }}"
 
     - name: load catalogue data
       ansible.builtin.shell: mongosh --host mongodb.olavu.in </app/schema/user.js
