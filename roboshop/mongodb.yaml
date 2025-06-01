@@ -1,0 +1,22 @@
+- name: mongodb
+  host: mongodb
+  become: yes
+  tasks:
+    - name: copy mongodb repo
+      ansible.builtin.copy:
+        src: mongodb.repo
+        dest: /etc/yum.repos.d.mongo.repo
+
+    - name: install mongodb
+      ansible.builtin.pacakge:
+        name: mongodb-org
+        state: present
+
+   -  name: start and enable mongodb
+      ansible.builtin.systemd_service:
+      name: mongod
+      state: started
+
+      
+
+
