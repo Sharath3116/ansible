@@ -20,7 +20,7 @@
     - name: download the pacakge
       ansible.builtin.get_url:
         url: https://roboshop-builds.s3.amazonaws.com/web.zip
-        dest: /tmp/web
+        dest: /tmp
 
     - name: extract web url content
       ansible.builtin.unarchive:
