@@ -8,4 +8,4 @@
 
     - name: print value
       ansible.builtin.debug:
-        msg: "User output is: {{ user }}"
+        msg: "User output is: {{ user.rc }}"
