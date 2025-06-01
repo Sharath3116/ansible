@@ -1,11 +1,11 @@
 - name: conditions
   hosts: web
   tasks:
-  - name: check roboshop user exist or not
-    ansible.builtin.command: id roboshop
-    register: user
-    #ignore_
-    
-  - name: print value
-    ansible.builtin.debug:
-    msg: "user output is: {{ user }}"
+    - name: check roboshop user exists or not
+      ansible.builtin.command: id roboshop
+      register: user
+      ignore_errors: true
+
+    - name: print value
+      ansible.builtin.debug:
+        msg: "User output is: {{ user }}"
