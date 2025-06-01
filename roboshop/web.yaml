@@ -1,7 +1,7 @@
 - name: web
   hosts: web
   become: yes
-  task: 
+  tasks:
     - name: install nginx web app
       ansible.builtin.package:
         name: nginx 
