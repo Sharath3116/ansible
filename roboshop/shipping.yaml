@@ -56,6 +56,15 @@
       ansible.builtin.package:
         name: mysql
         state: present
-
+     
+    - name: load shipping data
+      ansible.builtin.shell: mysql -h mysql.olavu.in -uroot -pRoboShop@1 < /app/db/schema.sql
+      ansible.builtin.shell: mysql -h mysql.olavu.in -uroot -pRoboShop@1 < /app/db/app-user.sql 
+      ansible.builtin.shell: mysql -h mysql.olavu.in -uroot -pRoboShop@1 < /app/db/master-data.sql
+      
     
-    
+    - name: start and enable catalogue
+      ansible.builtin.systemd_service:
+        name: shipping
+        state: restarted
+     
