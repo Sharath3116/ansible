@@ -22,11 +22,11 @@
     - name: download package
       ansible.builtin.get_url:
         url: https://roboshop-builds.s3.amazonaws.com/user.zip
-        dest: /tmp/user
+        dest: /tmp
     
     - name: untar the pacakge
       ansible.builtin.unarchive:
-        src: /tmp/user/user.zip
+        src: /tmp/user.zip
         dest: /tmp
         remote_src: yes
 
