@@ -64,4 +64,4 @@
 
     - name: load catalogue data
       ansible.builtin.shell: mongosh --host mongodb.olavu.in </app/schema/catalogue.js
-      when: product_count.srdout == 0
+      when: product_count.stdout == 0
