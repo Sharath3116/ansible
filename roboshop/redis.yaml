@@ -4,9 +4,9 @@
   tasks:
     - name: install redis pacakge
       ansible.builtin.pacakge:
-      name: redis
-      state: present
-    
+        name: redis
+        state: present
+      
     - name: open the ports
       ansible.builtin.replace:
         path: /etc/redis/redis.conf
