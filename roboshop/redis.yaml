@@ -2,8 +2,8 @@
   hosts: redis
   become: yes
   tasks:
-    - name: install redis pacakge
-      ansible.builtin.pacakge:
+    - name: install redis package
+      ansible.builtin.package:
         name: redis
         state: present
       
