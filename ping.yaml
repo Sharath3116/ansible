@@ -1,6 +1,5 @@
 - name: ping playbook
-  hosts: web
+  hosts: [inventory.ini]
   tasks:
     - name: ping server
       ansible.builtin.ping:
-
