@@ -56,7 +56,7 @@
     
     - name: get the catalogue configuratation
       ansible.builtin.command: mongosh --host mongodb.olavu.in --quiet --eval 'db = db.getSiblingDB("catalogue"); db.products.count()'
-      regester: product_count
+      register: product_count
 
     - name: print the count
       ansible.builtin.debug:
