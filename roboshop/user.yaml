@@ -1,7 +1,7 @@
 - name: user
   hosts: user
   become: yes
-  task: 
+  tasks: 
     - name: disable nodejsearlier verison
       ansible.builtin.shell: dnf module disable nodejs -y ; dnf module enable nodejs:20 -y
     
