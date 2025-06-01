@@ -1,5 +1,5 @@
 - name: package install
-  hosts: [web, shiping]
+  hosts: [web, shiping, cart]
   become: yes
   tasks:
   - name: install pacakge
