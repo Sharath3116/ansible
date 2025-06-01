@@ -4,9 +4,9 @@
   tasks:
   - name: stop service nginx
     ansible.builtin.service:
-    name: nginx
-    state: stop
+     name: nginx
+     state: stop
   - name: uninstall pacakge
     ansible.builtin.package:
-    name: nginx
-    state: absent
+     name: nginx
+     state: absent
