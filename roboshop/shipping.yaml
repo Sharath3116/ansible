@@ -42,11 +42,6 @@
         src: shipping.service
         dest: /etc/systemd/system/shipping.service
       
-    - name: install mongodb client
-      ansible.builtin.package:
-        name: mongodb-mongosh
-        state: present
-
     - name: daemon_reload
       ansible.builtin.systemd_service:
         daemon_reload: true
@@ -61,6 +56,6 @@
       ansible.builtin.package:
         name: mysql
         state: present
-    
+
     
     
