@@ -19,5 +19,56 @@
         path: /app
         state: directory
   
+    - name: download package
+      ansible.builtin.get_url:
+        url: https://roboshop-builds.s3.amazonaws.com/user.zip
+        dest: /tmp/user
+    
+    - name: untar the pacakge
+      ansible.builtin.unarchive:
+        src: /tmp/user/user.zip
+        dest: /tmp
+        remote_src: yes
 
+    - name: npm pacakge installed
+        ansible.builtin.shell: npm install
+      args:
+        chdir: /app
+
+    - name: copy services
+      ansible.builtin.copy:
+        src: user.service
+        dest: /etc/systemd/system/user.service
+
+    - name: start and enable user
+      ansible.builtin.systemd_service:
+        daemon_reload: true
+
+    - name: copy mongodb repo
+      ansible.builtin.copy:
+        src: mongodb.repo
+        dest: /etc/yum.repos.d/mongo.repo
       
+    - name: install mongodb client
+      ansible.builtin.package:
+        name: mongodb-mongosh
+        state: present
+    
+    - name: get the catalogue configuratation
+      ansible.builtin.command: mongosh --host mongodb.olavu.in --quiet --eval 'db = db.getSiblingDB("catalogue"); db.products.count()'
+      register: product_count
+
+    - name: print the count
+      ansible.builtin.debug:
+        msg: "product count {{ product_count }}"
+
+    - name: load catalogue data
+      ansible.builtin.shell: mongosh --host mongodb.olavu.in </app/schema/user.js
+      when: product_count.stdout == 0
+    
+    - name: start and enable user
+      ansible.builtin.systemd_service:
+        name: user
+        state: started
+        enabled: yes
+
