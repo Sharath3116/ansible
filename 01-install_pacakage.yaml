@@ -1,8 +1,8 @@
 - name: install and run nginx
   hosts: [web,cart]
   tasks: 
-  - name: install pacakages
-    ansible.builtin.pacakge:
+  - name: install package
+    ansible.builtin.package:
       name: nginx
       state: present
   - name: run nginx    
