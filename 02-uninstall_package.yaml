@@ -1,0 +1,12 @@
+- name: uninstall package
+  hosts: [cart]
+# become: yes
+  tasks:
+  - name: stop service nginx
+    ansible.builtin.service:
+    name: nginx
+    state: stop
+  - name: uninstall pacakge
+    ansible.builtin.pacakage:
+    name: nginx
+    state: absent
