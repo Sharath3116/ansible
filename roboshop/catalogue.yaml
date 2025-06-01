@@ -63,4 +63,4 @@
         msg: "product count {{ product_count }}"
 
     - name: load catalogue data
-      ansible.bultin.command: mongosh --host mongodb.olavu.in </app/schema/catalogue.js
+      ansible.bultin.shell: mongosh --host mongodb.olavu.in </app/schema/catalogue.js
