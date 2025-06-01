@@ -1,0 +1,66 @@
+- name: shipping
+  hosts: shipping
+  become: yes
+  tasks:
+    - name: install maven pacakge
+      ansible.builtin.package:
+       name: maven
+       state: present
+
+    - name: add application user
+      ansible.builtin.user:
+        name: roboshop
+    
+    - name: create directory
+      ansible.builtin.file:
+        path: /app
+        state: directory
+  
+    - name: download package
+      ansible.builtin.get_url:
+        url: https://roboshop-builds.s3.amazonaws.com/shipping.zip
+        dest: /tmp
+    
+    - name: untar the pacakge
+      ansible.builtin.unarchive:
+        src: /tmp/shipping.zip
+        dest: /app
+        remote_src: yes
+    
+    - name: npm pacakge installed
+      ansible.builtin.shell: mvn clean package
+      args:
+        chdir: /app
+
+    - name: RENAME JAR file
+      ansible.builtin.shell: mv target/shipping-1.0.jar shipping.jar
+      args:
+        chdir: /app
+
+    - name: copy shipping repo
+      ansible.builtin.copy:
+        src: shipping.service
+        dest: /etc/systemd/system/shipping.service
+      
+    - name: install mongodb client
+      ansible.builtin.package:
+        name: mongodb-mongosh
+        state: present
+
+    - name: daemon_reload
+      ansible.builtin.systemd_service:
+        daemon_reload: true
+        
+    - name: start and enable shipping
+      ansible.builtin.systemd_service:
+        name: shipping
+        state: started
+        enabled: yes  
+
+    - name: install mysql pacakge
+      ansible.builtin.package:
+        name: mysql
+        state: present
+    
+    
+    
